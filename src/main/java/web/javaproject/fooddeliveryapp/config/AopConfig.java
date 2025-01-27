@@ -6,5 +6,4 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @Configuration
 @EnableAspectJAutoProxy
 public class AopConfig {
-    // Această clasă activează suportul pentru AOP
 }
