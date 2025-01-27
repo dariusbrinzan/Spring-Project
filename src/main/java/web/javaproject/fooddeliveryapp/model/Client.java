@@ -5,12 +5,15 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Table(name = "clients")
 public class Client extends User {
+
     @Setter
     @Getter
     @Email(message = "Invalid email format")
@@ -28,6 +31,12 @@ public class Client extends User {
     @Getter
     @NotBlank(message = "Address cannot be blank")
     private String address;
+
+    // inject moment of bean init
+    @Transient
+    @Getter
+    @Value("#{T(java.time.LocalDateTime).now()}")
+    private LocalDateTime createdTime;
 
     public Client() {}
 
