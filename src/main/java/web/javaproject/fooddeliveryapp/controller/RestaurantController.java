@@ -110,4 +110,11 @@ public class RestaurantController {
         model.addAttribute("restaurant", restaurant);
         return "restaurantForm";
     }
+
+    @RequestMapping("/notify/{id}")
+    @ResponseBody
+    public String notifyRestaurant(@PathVariable Long id) {
+        restaurantService.notifyRestaurantUpdate(id);
+        return "Notif has been sent !";
+    }
 }

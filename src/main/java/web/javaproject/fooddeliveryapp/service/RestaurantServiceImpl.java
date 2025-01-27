@@ -2,6 +2,7 @@ package web.javaproject.fooddeliveryapp.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Sort;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import web.javaproject.fooddeliveryapp.dto.RestaurantDTO;
 import web.javaproject.fooddeliveryapp.exception.RestaurantAlreadyExistsException;
@@ -95,4 +96,15 @@ public class RestaurantServiceImpl implements RestaurantService{
 
     @Override
     public void deleteById(Long id){restaurantRepository.deleteById(id);}
+
+    @Async
+    @Override
+    public void notifyRestaurantUpdate(Long restaurantId) {
+        try {
+            Thread.sleep(3000);
+            System.out.println("Restaurant " + restaurantId + "notif after change");
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
 }
